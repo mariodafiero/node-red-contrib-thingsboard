@@ -1,1080 +1,1100 @@
 [
-  {
-    "id": "4ff48984.4f9cb",
-    "type": "tab",
-    "label": "Form 2",
-    "disabled": false,
-    "info": ""
-  },
-  {
-    "id": "6d4b6f37.3f68b",
-    "type": "ui_group",
-    "z": "4ff48984.4f9cb",
-    "name": "1 - DISPOSITIVO",
-    "tab": "67ff17e9.83751",
-    "order": 1,
-    "disp": true,
-    "width": "8",
-    "collapse": false,
-    "className": ""
-  },
-  {
-    "id": "5402bb8a.bff144",
-    "type": "debug",
-    "z": "4ff48984.4f9cb",
-    "name": "Dashboard Log",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "complete": "payload",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 3020,
-    "y": 380,
-    "wires": []
-  },
-  {
-    "id": "76836903.e5e028",
-    "type": "ui_form",
-    "z": "4ff48984.4f9cb",
-    "name": "",
-    "label": "911BOX - SETTINGS",
-    "group": "54bca71e.4287f",
-    "order": 0,
-    "width": 0,
-    "height": 0,
-    "options": [
-      {
-        "label": "NOME CLIENTE",
-        "value": "Name",
-        "type": "text",
-        "required": false,
-        "rows": null
-      },
-      {
-        "label": "NUMERO CELLULARE",
-        "value": "PhoneNumber",
-        "type": "text",
-        "required": false,
-        "rows": null
-      },
-      {
-        "label": "EMAIL",
-        "value": "Email",
-        "type": "email",
-        "required": false,
-        "rows": null
-      },
-      {
-        "label": "MAC ADDRESS",
-        "value": "mac",
-        "type": "text",
-        "required": false,
-        "rows": null
-      },
-      {
-        "label": "IP ADDRESS",
-        "value": "address",
-        "type": "text",
-        "required": false,
-        "rows": null
-      },
-      {
-        "label": "THINGSBOARD_HOST_NAME",
-        "value": "THINGSBOARD_HOST_NAME",
-        "type": "text",
-        "required": false,
-        "rows": null
-      },
-      {
-        "label": "ACCESS_TOKEN",
-        "value": "ACCESS_TOKEN",
-        "type": "text",
-        "required": false,
-        "rows": null
-      }
-    ],
-    "formValue": {
-      "Name": "",
-      "PhoneNumber": "",
-      "Email": "",
-      "mac": "",
-      "address": "",
-      "THINGSBOARD_HOST_NAME": "",
-      "ACCESS_TOKEN": ""
+    {
+        "id": "4ff48984.4f9cb",
+        "type": "tab",
+        "label": "Form 2",
+        "disabled": false,
+        "info": ""
     },
-    "payload": "",
-    "submit": "INVIA",
-    "cancel": "ANNULLA",
-    "topic": "Form",
-    "topicType": "str",
-    "splitLayout": false,
-    "className": "",
-    "x": 2520,
-    "y": 420,
-    "wires": [
-      [
-        "36cff23e.eb790e",
-        "50bc8cecdd8f50d2"
-      ]
-    ]
-  },
-  {
-    "id": "36cff23e.eb790e",
-    "type": "function",
-    "z": "4ff48984.4f9cb",
-    "name": "Save Events",
-    "func": "\n// initialise the counter to 0 if it doesn't exist already\nvar dashboardLog = [];\n\n \ndashboardLog.push(msg);\n\n\n// store the value back\ncontext.set('dashboardLog',dashboardLog);\n\n// make it part of the outgoing msg object\nvar msg1 = { payload: msg.payload };\n\nreturn msg1 ;\n",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 2710,
-    "y": 420,
-    "wires": [
-      [
-        "5402bb8a.bff144",
-        "2ba540d965966535",
-        "4ebedf10.25873",
-        "efa774cecb102630",
-        "1fdd98ee42c58653"
-      ]
-    ]
-  },
-  {
-    "id": "4ebedf10.25873",
-    "type": "ui_template",
-    "z": "4ff48984.4f9cb",
-    "d": true,
-    "group": "6d4b6f37.3f68b",
-    "name": "Dashboard Event Log ",
-    "order": 1,
-    "width": "8",
-    "height": "10",
-    "format": "<font color=\"red\">{{msg.topic}}</font>\n<ul>\n \n         <li>{{msg.payload}}</li>\n    </ul>\n \n\n<div ng-bind-html=\"msg.payload\"></div>",
-    "storeOutMessages": true,
-    "fwdInMessages": true,
-    "resendOnRefresh": false,
-    "templateScope": "local",
-    "className": "",
-    "x": 3040,
-    "y": 440,
-    "wires": [
-      [
-        "30d59ece7288246b"
-      ]
-    ]
-  },
-  {
-    "id": "2ba540d965966535",
-    "type": "file",
-    "z": "4ff48984.4f9cb",
-    "name": "",
-    "filename": "./file.txt",
-    "filenameType": "str",
-    "appendNewline": false,
-    "createDir": false,
-    "overwriteFile": "true",
-    "encoding": "none",
-    "x": 3000,
-    "y": 500,
-    "wires": [
-      [
-        "a53a55fb09b37555"
-      ]
-    ]
-  },
-  {
-    "id": "a53a55fb09b37555",
-    "type": "debug",
-    "z": "4ff48984.4f9cb",
-    "name": "debug 11",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 3160,
-    "y": 500,
-    "wires": []
-  },
-  {
-    "id": "6f045ff4d4ee8ab6",
-    "type": "file in",
-    "z": "4ff48984.4f9cb",
-    "name": "",
-    "filename": "./file.txt",
-    "filenameType": "str",
-    "format": "utf8",
-    "chunk": false,
-    "sendError": false,
-    "encoding": "none",
-    "allProps": false,
-    "x": 520,
-    "y": 80,
-    "wires": [
-      [
-        "7f52a940e589a5c7",
-        "4c92082d5a12c901"
-      ]
-    ]
-  },
-  {
-    "id": "7f52a940e589a5c7",
-    "type": "debug",
-    "z": "4ff48984.4f9cb",
-    "name": "debug 13",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 640,
-    "y": 160,
-    "wires": []
-  },
-  {
-    "id": "b072c7ee10fecfef",
-    "type": "inject",
-    "z": "4ff48984.4f9cb",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": true,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 110,
-    "y": 80,
-    "wires": [
-      [
-        "6f045ff4d4ee8ab6",
-        "b5ee52d90f781a1b"
-      ]
-    ]
-  },
-  {
-    "id": "7b69f6573ec91864",
-    "type": "debug",
-    "z": "4ff48984.4f9cb",
-    "name": "debug 15",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 2060,
-    "y": 80,
-    "wires": []
-  },
-  {
-    "id": "0bdfd744c054a51d",
-    "type": "json",
-    "z": "4ff48984.4f9cb",
-    "name": "",
-    "property": "payload",
-    "action": "obj",
-    "pretty": false,
-    "x": 1750,
-    "y": 80,
-    "wires": [
-      [
-        "7b69f6573ec91864",
-        "76836903.e5e028"
-      ]
-    ]
-  },
-  {
-    "id": "d6af40dccb614ecb",
-    "type": "function",
-    "z": "4ff48984.4f9cb",
-    "name": "function 2",
-    "func": "context.set('dashboardLog', []);\n",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 660,
-    "y": 620,
-    "wires": [
-      []
-    ]
-  },
-  {
-    "id": "efa774cecb102630",
-    "type": "debug",
-    "z": "4ff48984.4f9cb",
-    "name": "debug 16",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 3000,
-    "y": 700,
-    "wires": []
-  },
-  {
-    "id": "30d59ece7288246b",
-    "type": "debug",
-    "z": "4ff48984.4f9cb",
-    "name": "debug 17",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 3260,
-    "y": 440,
-    "wires": []
-  },
-  {
-    "id": "577176249139fb1b",
-    "type": "ui_template",
-    "z": "4ff48984.4f9cb",
-    "group": "6d4b6f37.3f68b",
-    "name": "",
-    "order": 1,
-    "width": 0,
-    "height": 0,
-    "format": "<svg width=\"100\" height=\"80\">\n    <circle id=\"circle1\" cx=\"20\" cy=\"20\" r=\"10\" style=\"stroke: none; fill: {{msg.color||'yellow'}};\" />\n</svg>",
-    "storeOutMessages": true,
-    "fwdInMessages": true,
-    "resendOnRefresh": true,
-    "templateScope": "local",
-    "className": "",
-    "x": 2100,
-    "y": 560,
-    "wires": [
-      []
-    ]
-  },
-  {
-    "id": "b4d8600c3ca56536",
-    "type": "debug",
-    "z": "4ff48984.4f9cb",
-    "name": "debug 19",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1140,
-    "y": 260,
-    "wires": []
-  },
-  {
-    "id": "4c92082d5a12c901",
-    "type": "json",
-    "z": "4ff48984.4f9cb",
-    "name": "",
-    "property": "payload",
-    "action": "obj",
-    "pretty": false,
-    "x": 670,
-    "y": 80,
-    "wires": [
-      [
-        "5f35e00d496b6a6e",
-        "db28b6d4a344cb9b"
-      ]
-    ]
-  },
-  {
-    "id": "5f35e00d496b6a6e",
-    "type": "debug",
-    "z": "4ff48984.4f9cb",
-    "name": "debug 20",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 840,
-    "y": 160,
-    "wires": []
-  },
-  {
-    "id": "1b0a3507a5afbb79",
-    "type": "file",
-    "z": "4ff48984.4f9cb",
-    "name": "",
-    "filename": "./file.txt",
-    "filenameType": "str",
-    "appendNewline": false,
-    "createDir": false,
-    "overwriteFile": "true",
-    "encoding": "none",
-    "x": 200,
-    "y": 800,
-    "wires": [
-      [
-        "f9df8b9ff0b8c503"
-      ]
-    ]
-  },
-  {
-    "id": "f9df8b9ff0b8c503",
-    "type": "debug",
-    "z": "4ff48984.4f9cb",
-    "name": "debug 21",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 360,
-    "y": 880,
-    "wires": []
-  },
-  {
-    "id": "1bf18a242b0bf017",
-    "type": "inject",
-    "z": "4ff48984.4f9cb",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 100,
-    "y": 740,
-    "wires": [
-      [
-        "1b0a3507a5afbb79"
-      ]
-    ]
-  },
-  {
-    "id": "db28b6d4a344cb9b",
-    "type": "function",
-    "z": "4ff48984.4f9cb",
-    "name": "VALIDATE  FILE.TXT",
-    "func": "msg.check = false ; \n\nif (typeof msg.payload.mac != 'undefined' && msg.payload.mac !== null) {\n\n    if (msg.payload.mac != '' ) {\n\n        if ( msg.payload.mac == flow.get('mac') )\n        \n            msg.check = true; \n\n    }\n    \n}\n\nreturn msg ; \n",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 860,
-    "y": 80,
-    "wires": [
-      [
-        "63db260ad8bfc110",
-        "b4d8600c3ca56536"
-      ]
-    ]
-  },
-  {
-    "id": "63db260ad8bfc110",
-    "type": "switch",
-    "z": "4ff48984.4f9cb",
-    "name": "",
-    "property": "check",
-    "propertyType": "msg",
-    "rules": [
-      {
-        "t": "true"
-      },
-      {
-        "t": "false"
-      }
-    ],
-    "checkall": "true",
-    "repair": false,
-    "outputs": 2,
-    "x": 1050,
-    "y": 80,
-    "wires": [
-      [
-        "7627bc5a57e7b2cb",
-        "0bdfd744c054a51d"
-      ],
-      [
-        "f5ba7b05fbf67fef"
-      ]
-    ]
-  },
-  {
-    "id": "7627bc5a57e7b2cb",
-    "type": "debug",
-    "z": "4ff48984.4f9cb",
-    "name": "debug 22",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1340,
-    "y": 120,
-    "wires": []
-  },
-  {
-    "id": "f5ba7b05fbf67fef",
-    "type": "debug",
-    "z": "4ff48984.4f9cb",
-    "name": "debug 23",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1360,
-    "y": 260,
-    "wires": []
-  },
-  {
-    "id": "89db4f223dfb4a3a",
-    "type": "function",
-    "z": "4ff48984.4f9cb",
-    "name": "getMACIP",
-    "func": "// Code added here will be run once\n// whenever the node is started.\n\nmsg1 = { payload: { address: \"\", mac: \"\" } };\n\nvar networkInterfaces = Object.values(os.networkInterfaces())\n    .reduce((r, a) => {\n        r = r.concat(a)\n        return r;\n    }, [])\n    .filter(({ family, address, mac }) => {\n        return family.toLowerCase().indexOf('v4') >= 0 &&\n            address !== '127.0.0.1'\n    })\n    .map(({ address, mac }) => {\n        return { address, mac }\n    }\n    );\nvar ipAddresses = networkInterfaces[0];\n\nmsg1.payload.address = ipAddresses.address;\nmsg1.payload.mac = ipAddresses.mac;\nreturn msg1;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "// Code added here will be run once\n// whenever the node is started.\n\nmsg = { payload : { address : \"\" , mac : \"\"} } ; \n\nvar networkInterfaces = Object.values(os.networkInterfaces())\n    .reduce((r, a) => {\n        r = r.concat(a)\n        return r;\n    }, [])\n    .filter(({ family, address, mac }) => {\n        return family.toLowerCase().indexOf('v4') >= 0 &&\n            address !== '127.0.0.1'\n    })\n    .map(({ address, mac }) => {\n        return { address, mac }\n    }\n    );\nvar ipAddresses = networkInterfaces[0];\n\nmsg.payload.address = ipAddresses.address;\nmsg.payload.mac = ipAddresses.mac;\nreturn msg;",
-    "finalize": "",
-    "libs": [
-      {
-        "var": "os",
-        "module": "os"
-      }
-    ],
-    "x": 670,
-    "y": 420,
-    "wires": [
-      [
-        "1fa9c918f8ef5757"
-      ]
-    ]
-  },
-  {
-    "id": "1fa9c918f8ef5757",
-    "type": "change",
-    "z": "4ff48984.4f9cb",
-    "name": "",
-    "rules": [
-      {
-        "t": "set",
-        "p": "mac",
-        "pt": "flow",
-        "to": "payload.mac",
-        "tot": "msg"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 1050,
-    "y": 420,
-    "wires": [
-      [
-        "76836903.e5e028"
-      ]
-    ]
-  },
-  {
-    "id": "50bc8cecdd8f50d2",
-    "type": "function",
-    "z": "4ff48984.4f9cb",
-    "name": "reload form",
-    "func": "\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 2510,
-    "y": 340,
-    "wires": [
-      [
-        "76836903.e5e028"
-      ]
-    ]
-  },
-  {
-    "id": "3a8fb9ae8c4cebb1",
-    "type": "ui_form",
-    "z": "4ff48984.4f9cb",
-    "name": "",
-    "label": "911BOX - DEVICE",
-    "group": "6d4b6f37.3f68b",
-    "order": 0,
-    "width": 0,
-    "height": 0,
-    "options": [
-      {
-        "label": "DEVICE_NAME",
-        "value": "DEVICE_NAME",
-        "type": "text",
-        "required": true,
-        "rows": null
-      },
-      {
-        "label": "THINGSBOARD_HOST_NAME",
-        "value": "THINGSBOARD_HOST_NAME",
-        "type": "text",
-        "required": true,
-        "rows": null
-      },
-      {
-        "label": "PROVISIONING_KEY",
-        "value": "PROVISIONING_KEY",
-        "type": "text",
-        "required": false,
-        "rows": null
-      },
-      {
-        "label": "PROVISIONING_SECRET",
-        "value": "PROVISIONING_SECRET",
-        "type": "text",
-        "required": false,
-        "rows": null
-      },
-      {
-        "label": "ACCESS_TOKEN",
-        "value": "ACCESS_TOKEN",
-        "type": "text",
-        "required": false,
-        "rows": null
-      }
-    ],
-    "formValue": {
-      "DEVICE_NAME": "",
-      "THINGSBOARD_HOST_NAME": "",
-      "PROVISIONING_KEY": "",
-      "PROVISIONING_SECRET": "",
-      "ACCESS_TOKEN": ""
-    },
-    "payload": "",
-    "submit": "INVIA",
-    "cancel": "ANNULLA",
-    "topic": "Form",
-    "topicType": "str",
-    "splitLayout": false,
-    "className": "",
-    "x": 1430,
-    "y": 560,
-    "wires": [
-      [
-        "754b6cded6859ff7",
-        "76836903.e5e028",
-        "1b167dbeb65c0d28",
-        "71e44599a33560a1"
-      ]
-    ]
-  },
-  {
-    "id": "67b13e42e466f937",
-    "type": "function",
-    "z": "4ff48984.4f9cb",
-    "name": "get Provisioning MSG",
-    "func": "var msg1 = {\n    payload: {\n        THINGSBOARD_HOST_NAME: global.get(\"THINGSBOARD_HOST_NAME\"),\n        PROVISIONING_KEY: global.get(\"PROVISIONING_KEY\"),\n        PROVISIONING_SECRET: global.get(\"PROVISIONING_SECRET\")\n    }\n};\n\nreturn msg1;\n",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 1080,
-    "y": 560,
-    "wires": [
-      [
-        "3a8fb9ae8c4cebb1"
-      ]
-    ]
-  },
-  {
-    "id": "754b6cded6859ff7",
-    "type": "debug",
-    "z": "4ff48984.4f9cb",
-    "name": "debug 24",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1780,
-    "y": 560,
-    "wires": []
-  },
-  {
-    "id": "1b167dbeb65c0d28",
-    "type": "function",
-    "z": "4ff48984.4f9cb",
-    "name": "reload form",
-    "func": "\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 1430,
-    "y": 500,
-    "wires": [
-      [
-        "3a8fb9ae8c4cebb1"
-      ]
-    ]
-  },
-  {
-    "id": "a0d0f3043abec79d",
-    "type": "http request",
-    "z": "4ff48984.4f9cb",
-    "name": "",
-    "method": "POST",
-    "ret": "txt",
-    "paytoqs": "ignore",
-    "url": "http://{{{THINGSBOARD_HOST_NAME}}}/api/v1/provision",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "insecureHTTPParser": false,
-    "authType": "",
-    "senderr": false,
-    "headers": [
-      {
-        "keyType": "other",
-        "keyValue": "Content-Type",
-        "valueType": "other",
-        "valueValue": "application/json"
-      }
-    ],
-    "x": 1430,
-    "y": 800,
-    "wires": [
-      [
-        "b43522c2598e4608",
-        "936a0659c2357971"
-      ]
-    ]
-  },
-  {
-    "id": "71e44599a33560a1",
-    "type": "function",
-    "z": "4ff48984.4f9cb",
-    "name": "function 4",
-    "func": "msg.THINGSBOARD_HOST_NAME = msg.payload.THINGSBOARD_HOST_NAME ; \n\nvar pPayload = {\n    \"deviceName\": \"DEVICE_NAME\",\n    \"provisionDeviceKey\": \"PUT_PROVISION_KEY_HERE\",\n    \"provisionDeviceSecret\": \"PUT_PROVISION_SECRET_HERE\"\n} ; \n\npPayload.deviceName = msg.payload.DEVICE_NAME ; \npPayload.provisionDeviceKey = msg.payload.PROVISIONING_KEY ; \npPayload.provisionDeviceSecret = msg.payload.PROVISIONING_SECRET ;\n\nmsg.payload = pPayload ; \n\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 1200,
-    "y": 740,
-    "wires": [
-      [
-        "ce3197cbcbae0c8c",
-        "a0d0f3043abec79d"
-      ]
-    ]
-  },
-  {
-    "id": "ce3197cbcbae0c8c",
-    "type": "debug",
-    "z": "4ff48984.4f9cb",
-    "name": "debug 25",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1420,
-    "y": 740,
-    "wires": []
-  },
-  {
-    "id": "b43522c2598e4608",
-    "type": "debug",
-    "z": "4ff48984.4f9cb",
-    "name": "debug 26",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1620,
-    "y": 800,
-    "wires": []
-  },
-  {
-    "id": "ce82248973d23e21",
-    "type": "function",
-    "z": "4ff48984.4f9cb",
-    "name": "function 5",
-    "func": "/*\n{\"credentialsValue\":\"ANPv7zbXPJMq5jQ1PXIo\",\"credentialsType\":\"ACCESS_TOKEN\",\"status\":\"SUCCESS\"}\"\n*/\nif ( msg.payload.status == \"SUCCESS\" ) { \n    msg.color = 'green' ;\n    msg.payload.ACCESS_TOKEN = msg.payload.credentialsValue ; \n} else  {\n    msg.color = 'red';\n}\n\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 1740,
-    "y": 740,
-    "wires": [
-      [
-        "577176249139fb1b",
-        "2f14c2e17a47fc6f",
-        "3a8fb9ae8c4cebb1"
-      ]
-    ]
-  },
-  {
-    "id": "936a0659c2357971",
-    "type": "json",
-    "z": "4ff48984.4f9cb",
-    "name": "",
-    "property": "payload",
-    "action": "",
-    "pretty": false,
-    "x": 1590,
-    "y": 740,
-    "wires": [
-      [
-        "ce82248973d23e21"
-      ]
-    ]
-  },
-  {
-    "id": "2f14c2e17a47fc6f",
-    "type": "change",
-    "z": "4ff48984.4f9cb",
-    "name": "",
-    "rules": [
-      {
-        "t": "set",
-        "p": "ACCESS_TOKEN",
-        "pt": "flow",
-        "to": "payload.ACCESS_TOKEN",
-        "tot": "msg"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 2060,
-    "y": 740,
-    "wires": [
-      [
-        "76836903.e5e028"
-      ]
-    ]
-  },
-  {
-    "id": "acf40a6808a40a17",
-    "type": "change",
-    "z": "4ff48984.4f9cb",
-    "name": "tbSERVER",
-    "rules": [
-      {
-        "t": "set",
-        "p": "THINGSBOARD_HOST_NAME",
-        "pt": "global",
-        "to": "911portierevirtuale.it:8880",
-        "tot": "str"
-      },
-      {
-        "t": "set",
-        "p": "PROVISIONING_KEY",
-        "pt": "global",
-        "to": "g0z46usd68q1nxr6calz",
-        "tot": "str"
-      },
-      {
-        "t": "set",
-        "p": "PROVISIONING_SECRET",
-        "pt": "global",
-        "to": "0q239xgcudhwo4217k6a",
-        "tot": "str"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 670,
-    "y": 560,
-    "wires": [
-      [
-        "67b13e42e466f937"
-      ]
-    ]
-  },
-  {
-    "id": "b5ee52d90f781a1b",
-    "type": "msg-router",
-    "z": "4ff48984.4f9cb",
-    "routerType": "broadcast",
-    "topicDependent": false,
-    "counterReset": false,
-    "msgKeyField": "payload",
-    "undefinedHash": false,
-    "outputsInfo": [
-      {
+    {
+        "id": "5402bb8a.bff144",
+        "type": "debug",
+        "z": "4ff48984.4f9cb",
+        "name": "Dashboard Log",
         "active": true,
-        "clone": false,
-        "delay": "0",
-        "weight": "0"
-      }
-    ],
-    "name": "",
-    "delaying": "unrelated",
-    "msgControl": false,
-    "outputs": 1,
-    "x": 320,
-    "y": 420,
-    "wires": [
-      [
-        "89db4f223dfb4a3a",
-        "d6af40dccb614ecb",
-        "acf40a6808a40a17"
-      ]
-    ]
-  },
-  {
-    "id": "09651824920219ed",
-    "type": "http request",
-    "z": "4ff48984.4f9cb",
-    "name": "",
-    "method": "POST",
-    "ret": "txt",
-    "paytoqs": "ignore",
-    "url": "http://{{{THINGSBOARD_HOST_NAME}}}/api/v1/{{{ACCESS_TOKEN}}}/telemetry",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "insecureHTTPParser": false,
-    "authType": "",
-    "senderr": false,
-    "headers": [
-      {
-        "keyType": "other",
-        "keyValue": "Content-Type",
-        "valueType": "other",
-        "valueValue": "application/json"
-      }
-    ],
-    "x": 3310,
-    "y": 280,
-    "wires": [
-      [
-        "35bab21960895a8c"
-      ]
-    ]
-  },
-  {
-    "id": "35bab21960895a8c",
-    "type": "debug",
-    "z": "4ff48984.4f9cb",
-    "name": "debug 29",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "full",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 3500,
-    "y": 280,
-    "wires": []
-  },
-  {
-    "id": "1fdd98ee42c58653",
-    "type": "change",
-    "z": "4ff48984.4f9cb",
-    "name": "",
-    "rules": [
-      {
-        "t": "set",
-        "p": "ACCESS_TOKEN",
-        "pt": "msg",
-        "to": "payload.ACCESS_TOKEN",
-        "tot": "msg"
-      },
-      {
-        "t": "set",
-        "p": "THINGSBOARD_HOST_NAME",
-        "pt": "msg",
-        "to": "THINGSBOARD_HOST_NAME",
-        "tot": "global"
-      }
-    ],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 2980,
-    "y": 200,
-    "wires": [
-      [
-        "09651824920219ed"
-      ]
-    ]
-  }
+        "tosidebar": true,
+        "console": false,
+        "complete": "payload",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3020,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "76836903.e5e028",
+        "type": "ui_form",
+        "z": "4ff48984.4f9cb",
+        "name": "",
+        "label": "911BOX - SETTINGS",
+        "group": "54bca71e.4287f",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "NOME CLIENTE",
+                "value": "Name",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "NUMERO CELLULARE",
+                "value": "PhoneNumber",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "EMAIL",
+                "value": "Email",
+                "type": "email",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "MAC ADDRESS",
+                "value": "mac",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "IP ADDRESS",
+                "value": "address",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "THINGSBOARD_HOST_NAME",
+                "value": "THINGSBOARD_HOST_NAME",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "ACCESS_TOKEN",
+                "value": "ACCESS_TOKEN",
+                "type": "text",
+                "required": false,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "Name": "",
+            "PhoneNumber": "",
+            "Email": "",
+            "mac": "",
+            "address": "",
+            "THINGSBOARD_HOST_NAME": "",
+            "ACCESS_TOKEN": ""
+        },
+        "payload": "",
+        "submit": "INVIA",
+        "cancel": "ANNULLA",
+        "topic": "Form",
+        "topicType": "str",
+        "splitLayout": false,
+        "className": "",
+        "x": 2520,
+        "y": 420,
+        "wires": [
+            [
+                "36cff23e.eb790e",
+                "50bc8cecdd8f50d2"
+            ]
+        ]
+    },
+    {
+        "id": "36cff23e.eb790e",
+        "type": "function",
+        "z": "4ff48984.4f9cb",
+        "name": "Save Events",
+        "func": "\n// initialise the counter to 0 if it doesn't exist already\nvar dashboardLog = [];\n\n \ndashboardLog.push(msg);\n\n\n// store the value back\ncontext.set('dashboardLog',dashboardLog);\n\n// make it part of the outgoing msg object\nvar msg1 = { payload: msg.payload };\n\nreturn msg1 ;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2710,
+        "y": 420,
+        "wires": [
+            [
+                "5402bb8a.bff144",
+                "2ba540d965966535",
+                "4ebedf10.25873",
+                "efa774cecb102630",
+                "1fdd98ee42c58653"
+            ]
+        ]
+    },
+    {
+        "id": "4ebedf10.25873",
+        "type": "ui_template",
+        "z": "4ff48984.4f9cb",
+        "d": true,
+        "group": "6d4b6f37.3f68b",
+        "name": "Dashboard Event Log ",
+        "order": 1,
+        "width": "8",
+        "height": "10",
+        "format": "<font color=\"red\">{{msg.topic}}</font>\n<ul>\n \n         <li>{{msg.payload}}</li>\n    </ul>\n \n\n<div ng-bind-html=\"msg.payload\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 3040,
+        "y": 440,
+        "wires": [
+            [
+                "30d59ece7288246b"
+            ]
+        ]
+    },
+    {
+        "id": "2ba540d965966535",
+        "type": "file",
+        "z": "4ff48984.4f9cb",
+        "name": "",
+        "filename": "./file.txt",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 3000,
+        "y": 500,
+        "wires": [
+            [
+                "a53a55fb09b37555"
+            ]
+        ]
+    },
+    {
+        "id": "a53a55fb09b37555",
+        "type": "debug",
+        "z": "4ff48984.4f9cb",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3160,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "6f045ff4d4ee8ab6",
+        "type": "file in",
+        "z": "4ff48984.4f9cb",
+        "name": "",
+        "filename": "./file.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 520,
+        "y": 80,
+        "wires": [
+            [
+                "7f52a940e589a5c7",
+                "4c92082d5a12c901"
+            ]
+        ]
+    },
+    {
+        "id": "7f52a940e589a5c7",
+        "type": "debug",
+        "z": "4ff48984.4f9cb",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "b072c7ee10fecfef",
+        "type": "inject",
+        "z": "4ff48984.4f9cb",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "6f045ff4d4ee8ab6",
+                "b5ee52d90f781a1b"
+            ]
+        ]
+    },
+    {
+        "id": "7b69f6573ec91864",
+        "type": "debug",
+        "z": "4ff48984.4f9cb",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2060,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "0bdfd744c054a51d",
+        "type": "json",
+        "z": "4ff48984.4f9cb",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 1750,
+        "y": 80,
+        "wires": [
+            [
+                "7b69f6573ec91864",
+                "76836903.e5e028"
+            ]
+        ]
+    },
+    {
+        "id": "d6af40dccb614ecb",
+        "type": "function",
+        "z": "4ff48984.4f9cb",
+        "name": "function 2",
+        "func": "context.set('dashboardLog', []);\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "efa774cecb102630",
+        "type": "debug",
+        "z": "4ff48984.4f9cb",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3000,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "30d59ece7288246b",
+        "type": "debug",
+        "z": "4ff48984.4f9cb",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3260,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "577176249139fb1b",
+        "type": "ui_template",
+        "z": "4ff48984.4f9cb",
+        "group": "6d4b6f37.3f68b",
+        "name": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<svg width=\"100\" height=\"80\">\n    <circle id=\"circle1\" cx=\"20\" cy=\"20\" r=\"10\" style=\"stroke: none; fill: {{msg.color||'yellow'}};\" />\n</svg>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 2100,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b4d8600c3ca56536",
+        "type": "debug",
+        "z": "4ff48984.4f9cb",
+        "name": "debug 19",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1140,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "4c92082d5a12c901",
+        "type": "json",
+        "z": "4ff48984.4f9cb",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 670,
+        "y": 80,
+        "wires": [
+            [
+                "5f35e00d496b6a6e",
+                "db28b6d4a344cb9b"
+            ]
+        ]
+    },
+    {
+        "id": "5f35e00d496b6a6e",
+        "type": "debug",
+        "z": "4ff48984.4f9cb",
+        "name": "debug 20",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "1b0a3507a5afbb79",
+        "type": "file",
+        "z": "4ff48984.4f9cb",
+        "name": "",
+        "filename": "./file.txt",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 200,
+        "y": 800,
+        "wires": [
+            [
+                "f9df8b9ff0b8c503"
+            ]
+        ]
+    },
+    {
+        "id": "f9df8b9ff0b8c503",
+        "type": "debug",
+        "z": "4ff48984.4f9cb",
+        "name": "debug 21",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "1bf18a242b0bf017",
+        "type": "inject",
+        "z": "4ff48984.4f9cb",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 740,
+        "wires": [
+            [
+                "1b0a3507a5afbb79"
+            ]
+        ]
+    },
+    {
+        "id": "db28b6d4a344cb9b",
+        "type": "function",
+        "z": "4ff48984.4f9cb",
+        "name": "VALIDATE  FILE.TXT",
+        "func": "msg.check = false ; \n\nif (typeof msg.payload.mac != 'undefined' && msg.payload.mac !== null) {\n\n    if (msg.payload.mac != '' ) {\n\n        if ( msg.payload.mac == flow.get('mac') )\n        \n            msg.check = true; \n\n    }\n    \n}\n\nreturn msg ; \n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 80,
+        "wires": [
+            [
+                "63db260ad8bfc110",
+                "b4d8600c3ca56536"
+            ]
+        ]
+    },
+    {
+        "id": "63db260ad8bfc110",
+        "type": "switch",
+        "z": "4ff48984.4f9cb",
+        "name": "",
+        "property": "check",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1050,
+        "y": 80,
+        "wires": [
+            [
+                "7627bc5a57e7b2cb",
+                "0bdfd744c054a51d"
+            ],
+            [
+                "f5ba7b05fbf67fef"
+            ]
+        ]
+    },
+    {
+        "id": "7627bc5a57e7b2cb",
+        "type": "debug",
+        "z": "4ff48984.4f9cb",
+        "name": "debug 22",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1340,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "f5ba7b05fbf67fef",
+        "type": "debug",
+        "z": "4ff48984.4f9cb",
+        "name": "debug 23",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1360,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "89db4f223dfb4a3a",
+        "type": "function",
+        "z": "4ff48984.4f9cb",
+        "name": "getMACIP",
+        "func": "// Code added here will be run once\n// whenever the node is started.\n\nmsg1 = { payload: { address: \"\", mac: \"\" } };\n\nvar networkInterfaces = Object.values(os.networkInterfaces())\n    .reduce((r, a) => {\n        r = r.concat(a)\n        return r;\n    }, [])\n    .filter(({ family, address, mac }) => {\n        return family.toLowerCase().indexOf('v4') >= 0 &&\n            address !== '127.0.0.1'\n    })\n    .map(({ address, mac }) => {\n        return { address, mac }\n    }\n    );\nvar ipAddresses = networkInterfaces[0];\n\nmsg1.payload.address = ipAddresses.address;\nmsg1.payload.mac = ipAddresses.mac;\nreturn msg1;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\nmsg = { payload : { address : \"\" , mac : \"\"} } ; \n\nvar networkInterfaces = Object.values(os.networkInterfaces())\n    .reduce((r, a) => {\n        r = r.concat(a)\n        return r;\n    }, [])\n    .filter(({ family, address, mac }) => {\n        return family.toLowerCase().indexOf('v4') >= 0 &&\n            address !== '127.0.0.1'\n    })\n    .map(({ address, mac }) => {\n        return { address, mac }\n    }\n    );\nvar ipAddresses = networkInterfaces[0];\n\nmsg.payload.address = ipAddresses.address;\nmsg.payload.mac = ipAddresses.mac;\nreturn msg;",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "os",
+                "module": "os"
+            }
+        ],
+        "x": 670,
+        "y": 420,
+        "wires": [
+            [
+                "1fa9c918f8ef5757"
+            ]
+        ]
+    },
+    {
+        "id": "1fa9c918f8ef5757",
+        "type": "change",
+        "z": "4ff48984.4f9cb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "mac",
+                "pt": "flow",
+                "to": "payload.mac",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1050,
+        "y": 420,
+        "wires": [
+            [
+                "76836903.e5e028"
+            ]
+        ]
+    },
+    {
+        "id": "50bc8cecdd8f50d2",
+        "type": "function",
+        "z": "4ff48984.4f9cb",
+        "name": "reload form",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2510,
+        "y": 340,
+        "wires": [
+            [
+                "76836903.e5e028"
+            ]
+        ]
+    },
+    {
+        "id": "3a8fb9ae8c4cebb1",
+        "type": "ui_form",
+        "z": "4ff48984.4f9cb",
+        "name": "",
+        "label": "911BOX - DEVICE",
+        "group": "6d4b6f37.3f68b",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "DEVICE_NAME",
+                "value": "DEVICE_NAME",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "THINGSBOARD_HOST_NAME",
+                "value": "THINGSBOARD_HOST_NAME",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "PROVISIONING_KEY",
+                "value": "PROVISIONING_KEY",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "PROVISIONING_SECRET",
+                "value": "PROVISIONING_SECRET",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "ACCESS_TOKEN",
+                "value": "ACCESS_TOKEN",
+                "type": "text",
+                "required": false,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "DEVICE_NAME": "",
+            "THINGSBOARD_HOST_NAME": "",
+            "PROVISIONING_KEY": "",
+            "PROVISIONING_SECRET": "",
+            "ACCESS_TOKEN": ""
+        },
+        "payload": "",
+        "submit": "INVIA",
+        "cancel": "ANNULLA",
+        "topic": "Form",
+        "topicType": "str",
+        "splitLayout": false,
+        "className": "",
+        "x": 1430,
+        "y": 560,
+        "wires": [
+            [
+                "754b6cded6859ff7",
+                "76836903.e5e028",
+                "1b167dbeb65c0d28",
+                "71e44599a33560a1"
+            ]
+        ]
+    },
+    {
+        "id": "67b13e42e466f937",
+        "type": "function",
+        "z": "4ff48984.4f9cb",
+        "name": "get Provisioning MSG",
+        "func": "var msg1 = {\n    payload: {\n        THINGSBOARD_HOST_NAME: global.get(\"THINGSBOARD_HOST_NAME\"),\n        PROVISIONING_KEY: global.get(\"PROVISIONING_KEY\"),\n        PROVISIONING_SECRET: global.get(\"PROVISIONING_SECRET\")\n    }\n};\n\nreturn msg1;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 560,
+        "wires": [
+            [
+                "3a8fb9ae8c4cebb1"
+            ]
+        ]
+    },
+    {
+        "id": "754b6cded6859ff7",
+        "type": "debug",
+        "z": "4ff48984.4f9cb",
+        "name": "debug 24",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1780,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "1b167dbeb65c0d28",
+        "type": "function",
+        "z": "4ff48984.4f9cb",
+        "name": "reload form",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1430,
+        "y": 500,
+        "wires": [
+            [
+                "3a8fb9ae8c4cebb1"
+            ]
+        ]
+    },
+    {
+        "id": "a0d0f3043abec79d",
+        "type": "http request",
+        "z": "4ff48984.4f9cb",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://{{{THINGSBOARD_HOST_NAME}}}/api/v1/provision",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 1430,
+        "y": 800,
+        "wires": [
+            [
+                "b43522c2598e4608",
+                "936a0659c2357971"
+            ]
+        ]
+    },
+    {
+        "id": "71e44599a33560a1",
+        "type": "function",
+        "z": "4ff48984.4f9cb",
+        "name": "function 4",
+        "func": "msg.THINGSBOARD_HOST_NAME = msg.payload.THINGSBOARD_HOST_NAME ; \n\nvar pPayload = {\n    \"deviceName\": \"DEVICE_NAME\",\n    \"provisionDeviceKey\": \"PUT_PROVISION_KEY_HERE\",\n    \"provisionDeviceSecret\": \"PUT_PROVISION_SECRET_HERE\"\n} ; \n\npPayload.deviceName = msg.payload.DEVICE_NAME ; \npPayload.provisionDeviceKey = msg.payload.PROVISIONING_KEY ; \npPayload.provisionDeviceSecret = msg.payload.PROVISIONING_SECRET ;\n\nmsg.payload = pPayload ; \n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1200,
+        "y": 740,
+        "wires": [
+            [
+                "ce3197cbcbae0c8c",
+                "a0d0f3043abec79d"
+            ]
+        ]
+    },
+    {
+        "id": "ce3197cbcbae0c8c",
+        "type": "debug",
+        "z": "4ff48984.4f9cb",
+        "name": "debug 25",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1420,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "b43522c2598e4608",
+        "type": "debug",
+        "z": "4ff48984.4f9cb",
+        "name": "debug 26",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1620,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "ce82248973d23e21",
+        "type": "function",
+        "z": "4ff48984.4f9cb",
+        "name": "function 5",
+        "func": "/*\n{\"credentialsValue\":\"ANPv7zbXPJMq5jQ1PXIo\",\"credentialsType\":\"ACCESS_TOKEN\",\"status\":\"SUCCESS\"}\"\n*/\nif ( msg.payload.status == \"SUCCESS\" ) { \n    msg.color = 'green' ;\n    msg.payload.ACCESS_TOKEN = msg.payload.credentialsValue ; \n} else  {\n    msg.color = 'red';\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1740,
+        "y": 740,
+        "wires": [
+            [
+                "577176249139fb1b",
+                "2f14c2e17a47fc6f",
+                "3a8fb9ae8c4cebb1"
+            ]
+        ]
+    },
+    {
+        "id": "936a0659c2357971",
+        "type": "json",
+        "z": "4ff48984.4f9cb",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1590,
+        "y": 740,
+        "wires": [
+            [
+                "ce82248973d23e21"
+            ]
+        ]
+    },
+    {
+        "id": "2f14c2e17a47fc6f",
+        "type": "change",
+        "z": "4ff48984.4f9cb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ACCESS_TOKEN",
+                "pt": "flow",
+                "to": "payload.ACCESS_TOKEN",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2060,
+        "y": 740,
+        "wires": [
+            [
+                "76836903.e5e028"
+            ]
+        ]
+    },
+    {
+        "id": "acf40a6808a40a17",
+        "type": "change",
+        "z": "4ff48984.4f9cb",
+        "name": "tbSERVER",
+        "rules": [
+            {
+                "t": "set",
+                "p": "THINGSBOARD_HOST_NAME",
+                "pt": "global",
+                "to": "911portierevirtuale.it:8880",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "PROVISIONING_KEY",
+                "pt": "global",
+                "to": "g0z46usd68q1nxr6calz",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "PROVISIONING_SECRET",
+                "pt": "global",
+                "to": "0q239xgcudhwo4217k6a",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 560,
+        "wires": [
+            [
+                "67b13e42e466f937"
+            ]
+        ]
+    },
+    {
+        "id": "b5ee52d90f781a1b",
+        "type": "msg-router",
+        "z": "4ff48984.4f9cb",
+        "routerType": "broadcast",
+        "topicDependent": false,
+        "counterReset": false,
+        "msgKeyField": "payload",
+        "undefinedHash": false,
+        "outputsInfo": [
+            {
+                "active": true,
+                "clone": false,
+                "delay": "0",
+                "weight": "0"
+            }
+        ],
+        "name": "",
+        "delaying": "unrelated",
+        "msgControl": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 420,
+        "wires": [
+            [
+                "89db4f223dfb4a3a",
+                "d6af40dccb614ecb",
+                "acf40a6808a40a17"
+            ]
+        ]
+    },
+    {
+        "id": "09651824920219ed",
+        "type": "http request",
+        "z": "4ff48984.4f9cb",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://{{{THINGSBOARD_HOST_NAME}}}/api/v1/{{{ACCESS_TOKEN}}}/telemetry",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 3310,
+        "y": 280,
+        "wires": [
+            [
+                "35bab21960895a8c"
+            ]
+        ]
+    },
+    {
+        "id": "35bab21960895a8c",
+        "type": "debug",
+        "z": "4ff48984.4f9cb",
+        "name": "debug 29",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3500,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "1fdd98ee42c58653",
+        "type": "change",
+        "z": "4ff48984.4f9cb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ACCESS_TOKEN",
+                "pt": "msg",
+                "to": "payload.ACCESS_TOKEN",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "THINGSBOARD_HOST_NAME",
+                "pt": "msg",
+                "to": "THINGSBOARD_HOST_NAME",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2980,
+        "y": 200,
+        "wires": [
+            [
+                "09651824920219ed"
+            ]
+        ]
+    },
+    {
+        "id": "54bca71e.4287f",
+        "type": "ui_group",
+        "name": "2 - UTENTE",
+        "tab": "67ff17e9.83751",
+        "order": 2,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6d4b6f37.3f68b",
+        "type": "ui_group",
+        "z": "4ff48984.4f9cb",
+        "name": "1 - DISPOSITIVO",
+        "tab": "67ff17e9.83751",
+        "order": 1,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "67ff17e9.83751",
+        "type": "ui_tab",
+        "name": "Forms Example ",
+        "icon": "home",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
 ]
